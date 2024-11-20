@@ -23,3 +23,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+  dockerbuild:
+    name: test
+    runs-on: ubuntu-latest
+    needs: [sonarcloud]
+    steps:
+      - name: docker build 
+        run: docker build . -t test
